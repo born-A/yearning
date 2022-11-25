@@ -4,6 +4,10 @@
     <%@ page import="post.PostDAO" %>
     <%@ page import="post.Post" %>
     <%@ page import="java.util.ArrayList" %>
+    <%@ page import="java.io.File" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -94,7 +98,7 @@
         	}
         %>
        
-        
+        	<div class="col-lg-6"><img class="img-fluid" src="./resources/images/finditemEx.png" alt="..." /></div>
         
          <!-- Header-->
         <header class="bg-dark py-5">
@@ -111,12 +115,19 @@
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                <% 	
+					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/postUpload";
+					File viewFile = new File(real+"/"+postID+".jpg");
+					if(viewFile.exists()){
+				%>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="postUpload/<%=postID %>.jpg" border="300px" width="300px" height="300px" alt="..." /></div>
+                    <% } %>
+                    
                     <div class="col-md-6">
                         <div class="small mb-1">작성 시간 : <%= post.getPostDate().substring(0,11) + post.getPostDate().substring(11,13)+"시"+post.getPostDate().substring(14,16)+"분"%></div>
                         <h1 class="display-5 fw-bolder"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></h1>
                         <div class="fs-5 mb-5">
-                            
+                           <img  src="postUpload/<%=postID %>.jpg" border="300px" width="300px" height="300px" />
                             <span>작성자 : <%= post.getUserID() %></span>
                         </div>
                         <p class="lead"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></p>

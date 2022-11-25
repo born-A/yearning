@@ -10,7 +10,7 @@
 	
 	<div class="container">
 		<div class="row">
-			<form method="post" action="writeAction.jsp">
+			<form method="post" enctype="multipart/form-data" action="writeAction.jsp">
 				<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
 				<thead>
 					<tr>
@@ -25,6 +25,9 @@
 						<td><textarea  class="form-control" placeholder="글 내용" name="postContent" maxlength="2048" style="height:350px;"></textarea></td>
 						
 					</tr>
+					<tr>
+				<td><input type="file" name="fileName"></td>
+			</tr>
 				</tbody>
 					
 				</table>
