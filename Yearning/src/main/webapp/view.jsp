@@ -98,7 +98,7 @@
         	}
         %>
        
-        	<div class="col-lg-6"><img class="img-fluid" src="./resources/images/finditemEx.png" alt="..." /></div>
+        
         
          <!-- Header-->
         <header class="bg-dark py-5">
@@ -126,8 +126,7 @@
                     <div class="col-md-6">
                         <div class="small mb-1">작성 시간 : <%= post.getPostDate().substring(0,11) + post.getPostDate().substring(11,13)+"시"+post.getPostDate().substring(14,16)+"분"%></div>
                         <h1 class="display-5 fw-bolder"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></h1>
-                        <div class="fs-5 mb-5">
-                           <img  src="postUpload/<%=postID %>.jpg" border="300px" width="300px" height="300px" />
+                        <div class="fs-5 mb-5"> 
                             <span>작성자 : <%= post.getUserID() %></span>
                         </div>
                         <p class="lead"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></p>
