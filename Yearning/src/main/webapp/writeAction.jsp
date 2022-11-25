@@ -84,7 +84,9 @@
 								File oldfile = new File(path+"/"+filename);
 								File newFile = new File(path+"/"+(postID)+".jpg");
 								file.renameTo(newFile);
-							}
+					        }else{
+					        	script.println("alert('파일없')");
+					        }
 						/* //form으로 전달받은 3가지를 가져온다
 						String fileName = multi.getFilesystemName("fileName"); */
 					    }

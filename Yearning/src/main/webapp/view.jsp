@@ -26,8 +26,8 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="./resources/css/styles.css" rel="stylesheet" />
-        <link href="./resources/css/findItem_styles.css" rel="stylesheet" />
+        <link href="./resources/css/borderbox_styles.css" rel="stylesheet" />
+        <link href="./resources/css/borderbox_findItem_styles.css" rel="stylesheet" />
     </head>
     <body>
         <%
