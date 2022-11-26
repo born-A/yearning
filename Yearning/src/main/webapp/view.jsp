@@ -118,10 +118,10 @@
                 <% 	
 					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/postUpload";
 					File viewFile = new File(real+"/"+postID+".jpg");
-					if(viewFile.exists()){
+					/* if(viewFile.exists()){ */
 				%>
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="postUpload/<%=postID %>.jpg" border="300px" width="300px" height="300px" alt="..." /></div>
-                    <% } %>
+                    <%  %>
                     
                     <div class="col-md-6">
                         <div class="small mb-1">작성 시간 : <%= post.getPostDate().substring(0,11) + post.getPostDate().substring(11,13)+"시"+post.getPostDate().substring(14,16)+"분"%></div>
