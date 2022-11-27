@@ -26,8 +26,10 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="./resources/css/borderbox_styles.css" rel="stylesheet" />
-        <link href="./resources/css/borderbox_findItem_styles.css" rel="stylesheet" />
+       <!--  <link href="./resources/css/borderbox_styles.css" rel="stylesheet" /> -->
+        <!-- <link href="./resources/css/borderbox_findItem_styles.css" rel="stylesheet" /> -->
+        <link href="./resources/css/styles.css" rel="stylesheet" />
+        <link href="./resources/css/findItem_styles.css" rel="stylesheet" />
     </head>
     <body>
         <%
@@ -38,6 +40,10 @@
     		int postID = 0;
     		if(request.getParameter("postID") != null){
     			postID = Integer.parseInt(request.getParameter("postID"));
+    		}
+    		int boardID = 0;
+    		if (request.getParameter("boardID") != null){
+    			boardID = Integer.parseInt(request.getParameter("boardID"));
     		}
     		if(postID == 0){
     			PrintWriter script = response.getWriter();
@@ -105,7 +111,7 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <p class="lead fw-normal text-white-50 mb-0">Please Find This Item !!</p>
                 </div>
             </div>
         </header>
@@ -120,7 +126,7 @@
 					File viewFile = new File(real+"/"+postID+".jpg");
 					/* if(viewFile.exists()){ */
 				%>
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="postUpload/<%=postID %>.jpg" border="300px" width="300px" height="300px" alt="..." /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="postUpload/<%=postID %>.jpg" border="50px" width=600px" height="500px" alt="..." /></div>
                     <%  %>
                     
                     <div class="col-md-6">
@@ -197,7 +203,7 @@
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Yearning</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

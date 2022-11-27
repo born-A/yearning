@@ -63,7 +63,8 @@ public class PostDAO {
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, postContent);
 			pstmt.setInt(6, 1);
-			return pstmt.executeUpdate();
+			pstmt.executeUpdate();
+			return getNext();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

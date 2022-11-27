@@ -35,6 +35,10 @@
     		if(request.getParameter("pageNumber") != null){
     			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     		}
+    		int boardID = 0;
+			if (request.getParameter("boardID") != null){
+				boardID = Integer.parseInt(request.getParameter("boardID"));
+			}
     	%>
     	<%
         	if(userID == null){

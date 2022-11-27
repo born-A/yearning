@@ -64,11 +64,11 @@
   --bs-body-bg: #fff;
 }
 
-/* *,
+
 *::before,
 *::after {
-  box-sizing: border-box;
-} */
+  box-sizing: content-box;/* border-box; */
+} 
 
 @media (prefers-reduced-motion: no-preference) {
   :root {
@@ -4514,7 +4514,7 @@ textarea.form-control-lg {
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
-  /* background-clip: border-box; */
+  background-clip: border-box; 
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
