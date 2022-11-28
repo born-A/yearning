@@ -10,6 +10,8 @@
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page import="post.JjimDAO" %>
+<%@ page import="post.Jjim" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -98,10 +100,9 @@
                         <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
                         <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li> -->
-                        <ul class="dropdown-menu">
-   							 <li><a href="jjimPost.jsp">북마크</a></li>
-    						 <li><a href="logout.jsp">로그아웃</a></li>
-						</ul> 
+                        <li class="dropdown">
+                        <li><a href="jjimPost.jsp">북마크</a></li>
+              		<li><a href="logout.jsp">로그아웃</a></li>
                     </ul>
                 </div>
             </div>
@@ -127,6 +128,7 @@
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
+                
                 <% 	
 					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/postUpload";
 					File viewFile = new File(real+"/"+postID+".jpg");
@@ -144,10 +146,23 @@
                         <p class="lead"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <%	JjimDAO jjimDAO = new JjimDAO();
+		ArrayList<Jjim> list1 = jjimDAO.getJjim(userID, postID);
+		if (list1.isEmpty()){%>
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button" onclick = "location.href='jjimAction.jsp?postID=<%=postID%>'">
                                 <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
+                            	찜하기
+                            	</button>
+	<%	}
+		else{%>
+		<button class="btn btn-outline-dark flex-shrink-0" type="button" onclick = "location.href='jjimAction.jsp?postID=<%=postID%>'">
+                                <i class="bi-cart-fill me-1"></i>
+                            	찜해제
+                            	</button>
+	<%	} %>	
+                           
+                            
+	
                             <a href="findItem.jsp" class="btn-btn-primary">목록</a>
 			<%
 				if (userID != null && userID.equals(post.getUserID())){

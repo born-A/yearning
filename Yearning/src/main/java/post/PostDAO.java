@@ -94,6 +94,31 @@ public class PostDAO {
 		return list;
 	}
 
+	public ArrayList<Post> searchList(int pageNumber, String search){
+		String SQL = "SELECT * FROM POST WHERE postID < ? AND (postTitle like ? OR postContent like ? ) AND PostAvailable = 1 ORDER BY PostID DESC LIMIT 10"; 
+		ArrayList<Post> list = new ArrayList<Post>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  getNext() - (pageNumber - 1) * 10);
+			pstmt.setString(2, "%"+search+"%");
+			pstmt.setString(3, "%"+search+"%");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Post Post = new Post();
+				Post.setPostID(rs.getInt(1));
+				Post.setPostTitle(rs.getString(2));
+				Post.setUserID(rs.getString(3));
+				Post.setPostDate(rs.getString(4));
+				Post.setPostContent(rs.getString(5));
+				Post.setPostAvailable(rs.getInt(6));
+				list.add(Post);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list; //데이터베이스 오류
+	}
+	
 	public boolean nextPage(int pageNumber) { //페이징처
 		String SQL = "SELECT * FROM post WHERE PostID < ? AND postAvailable = 1";
 		ArrayList<Post> list = new ArrayList<Post>();

@@ -4,6 +4,9 @@
     <%@ page import="post.PostDAO" %>
     <%@ page import="post.Post" %>
     <%@ page import="java.util.ArrayList" %>
+    <%@ page import="post.JjimDAO"%>
+<%@ page import="post.Jjim"%>
+<%@ page import="java.lang.Math" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -81,10 +84,10 @@
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
                         <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li> -->
                         <li class="dropdown">
-                        <li><a href="jjimPost.jsp">북마크</a></li>
+                        <li><a href="jjiPost.jsp">북마크</a></li>
               		<li><a href="logout.jsp">로그아웃</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -110,35 +113,31 @@
            <div class="row gx-4 gx-lg-5 align-items-center my-5">
                 <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="…" /></div>
                 <div class="col-lg-5">
-                    <h1 class="font-weight-light">Business Name or Tagline</h1>
-                   <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
-                    <a class="btn btn-primary" href="write.jsp">게시물 등록하기</a>
+                    <h1>북마크<br></h1>
+		<p><%=userID %>님이 북마크하신 목록입니다.<br><br></p>
                 </div>
             </div>
             <!-- Call to Action-->
              <div class="card text-white bg-secondary my-5 py-4 text-center">
                 <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
-            <form name = "p_search">
-					<input type="button" value="검색" onclick="nwindow()"/>
-				</form>	
             </div>
             <!-- Content Row-->
             <div class="row gx-4 gx-lg-5">
-            <%
-            	PostDAO postDAO = new PostDAO();
-                ArrayList<Post> list = postDAO.getList(pageNumber);
-                for(int i = 0; i < list.size(); i++){
-             %>   	
+           <%
+							JjimDAO jjimDAO = new JjimDAO();
+							ArrayList<Post> list = jjimDAO.getList(userID, pageNumber);
+							for(int i=0; i<list.size(); i++){	
+						%>	
              <div class="col-md-4 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
                          <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
                             <h2 class="card-title"><a href="view.jsp?postID=<%=list.get(i).getPostID()%>"><%= list.get(i).getPostTitle()%></a></h2> 
                            <%--  <h2 class="card-title"><a href="uploadex.jsp?postID=<%=list.get(i).getPostID()%>"><%= list.get(i).getPostTitle()%></a></h2> --%>
-                            <p class="card-text"><%= list.get(i).getUserID()%></p>
+                            <p class="card-text"><%= list.get(i).getPostID()%></p>
                             <p class="card-text"><%= list.get(i).getUserID()%></p>
                             <p class="card-text"><%= list.get(i).getPostDate().substring(0,11) + list.get(i).getPostDate().substring(11,13)+"시"+list.get(i).getPostDate().substring(14,16)+"분"%></p>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                            <p class="card-text"><a href="view.jsp?bbsID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></p>
                         </div>
                         <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                     </div>
@@ -207,7 +206,7 @@
                
         </div>
 
-		<%
+		<%-- <%
         	if(pageNumber != 1){
         %>
         	<a href="post.jsp?pageNumber - 1%>"class="btn btn-success btn-araw-left">이전</a>
@@ -217,18 +216,12 @@
         	<a href="post.jsp?pageNumber + 1%>"class="btn btn-success btn-arraw-left">다음</a>
         <%
 		}
-        %>
-		<script>
-	function nwindow(){
-		window.name = "parant";
-		var url= "search.jsp";
-		window.open(url,"","width=250,height=200,left=300");
-	}
-</script>
+        %> --%>
+
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Yearning</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

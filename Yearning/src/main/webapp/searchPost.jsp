@@ -39,6 +39,10 @@
 			if (request.getParameter("boardID") != null){
 				boardID = Integer.parseInt(request.getParameter("boardID"));
 			}
+			String search = null;
+			if(request.getParameter("search") != null){
+				search = request.getParameter("search");
+			}
     	%>
     	<%
         	if(userID == null){
@@ -126,8 +130,9 @@
             <div class="row gx-4 gx-lg-5">
             <%
             	PostDAO postDAO = new PostDAO();
-                ArrayList<Post> list = postDAO.getList(pageNumber);
-                for(int i = 0; i < list.size(); i++){
+                		   ArrayList<Post> list = postDAO.searchList(pageNumber,search);
+							for(int i=0; i<list.size(); i++){	
+							System.out.println(list.get(i));
              %>   	
              <div class="col-md-4 mb-5">
                     <div class="card h-100">
@@ -175,28 +180,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Categories</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
                     <!-- Side widget-->
                     <div class="card mb-4">
                         <div class="card-header">Side Widget</div>
