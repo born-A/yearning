@@ -13,6 +13,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <link href="./resources/css/offline_style.css" rel="stylesheet" />
+        <link href="./resources/css/issue_styles.css" rel="stylesheet" /> 
     </head>
     <body>
        <%

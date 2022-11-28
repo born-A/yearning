@@ -65,7 +65,7 @@
          <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Yearning</a>
+                <a class="navbar-brand" href="home.jsp">Yearning</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -98,11 +98,8 @@
                         <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li> -->
-                        <li class="dropdown">
-                        <li><a href="jjimPost.jsp">북마크</a></li>
-              		<li><a href="logout.jsp">로그아웃</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
+                        <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
                     </ul>
                 </div>
             </div>

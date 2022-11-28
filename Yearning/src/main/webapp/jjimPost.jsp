@@ -27,6 +27,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <link href="./resources/css/fi_styles.css" rel="stylesheet" />
+        <link href="./resources/css/issue_styles.css" rel="stylesheet" /> 
     </head>
     <body>
         <%
@@ -175,27 +176,7 @@
                         </div>
                     </div>
                     <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Categories</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <!-- Side widget-->
                     <div class="card mb-4">
                         <div class="card-header">Side Widget</div>

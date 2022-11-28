@@ -14,6 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./resources/css/styles.css" rel="stylesheet" />
+        <link href="./resources/css/issue_styles.css" rel="stylesheet" /> 
 <script type="text/javascript" src="./resources/js/validation.js"></script>
 <style>
    
@@ -101,6 +102,11 @@
          </div>
          <div><p> </div>
          <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+         <br>
+         아직 Yearning 회원이 아니신가요?
+         <br>
+         <a href="join.jsp">회원가입 하러가기</a>
+     
          <p class="mt-5 mb-3 text-muted">&copy; Yearning</p>
       </form>
    </section>
