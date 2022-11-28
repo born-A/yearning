@@ -106,7 +106,7 @@
 							Files.move(oldfile, newfile);
 						}
 				 		script.println("<script>");
-						script.println("location.href= \'view.jsp'");
+						script.println("location.href= \'view.jsp?postID="+(postID-1)+"\'");
 				 		script.println("</script>");
 					}
 				}

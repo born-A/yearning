@@ -3,6 +3,8 @@
     <%@ page import="java.io.PrintWriter" %>
     <%@ page import="post.PostDAO" %>
     <%@ page import="post.Post" %>
+    <%@ page import="comment.Comment" %>
+<%@ page import="comment.CommentDAO" %>
     <%@ page import="java.util.ArrayList" %>
     <%@ page import="java.io.File" %>
 <%@ page import="java.util.Enumeration" %>
@@ -45,7 +47,7 @@
     		if (request.getParameter("boardID") != null){
     			boardID = Integer.parseInt(request.getParameter("boardID"));
     		}
-    		if(postID == 0){
+    		if(postID == -1){
     			PrintWriter script = response.getWriter();
     			script.println("<script>");
     			script.println("alert('유효하지 않은 글입니다.')");
@@ -95,7 +97,11 @@
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
                         <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li> -->
+                        <ul class="dropdown-menu">
+   							 <li><a href="jjimPost.jsp">북마크</a></li>
+    						 <li><a href="logout.jsp">로그아웃</a></li>
+						</ul> 
                     </ul>
                 </div>
             </div>
@@ -151,52 +157,95 @@
 			<% 
 			}
 			%>
+			
+			<div class="container">
+			<div class="row">
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+					<tbody>
+					<tr>
+						<td align="left" bgcolor="beige">댓글</td>
+					</tr>
+					<tr>
+						<%
+							CommentDAO commentDAO = new CommentDAO();
+							ArrayList<Comment> list = commentDAO.getList(postID);
+							for(int i=0; i<list.size(); i++){
+						%>
+							<div class="container">
+								<div class="row">
+									<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+										<tbody>
+										<tr>						
+										<td align="left"><%= list.get(i).getUserID() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11,13) + "시" + list.get(i).getCommentDate().substring(14,16) + "분" %></td>		
+										<td colspan="2"></td>
+										<td align="right"><%
+													if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
+												%>
+														<form name = "p_search">
+															<a type="button" onclick="nwindow(<%=postID %>,<%=list.get(i).getCommentID()%>)" class="btn-primary">수정</a>
+														</form>	
+														<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "commentDeleteAction.jsp?bbsID=<%=postID %>&commentID=<%= list.get(i).getCommentID() %>" class="btn-primary">삭제</a>
+																	
+												<%
+													}
+												%>	
+										</td>
+										</tr>
+										<tr>
+											<td colspan="5" align="left"><%= list.get(i).getCommentText() %>
+											<% 	
+												String commentReal = "/Users/bona/git/repository/Yearning/src/main/webapp/commentUpload";
+												File commentFile = new File(commentReal+"/"+postID+list.get(i).getCommentID()+".jpg");
+												if(commentFile.exists()){
+											%>	
+											<br><br><img src = "commentUpload/<%=postID %><%=list.get(i).getCommentID() %>.jpg" border="300px" width="300px" height="300px"><br><br></td>											
+											<%} %>	
+										</tr>
+									</tbody>
+								</table>			
+							</div>
+						</div>
+						<%
+							}
+						%>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+			<div class="container">
+			<div class="form-group">
+			<form method="post" encType = "multipart/form-data" action="commentAction.jsp?postID=<%= postID %>">
+					<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+						<tr>
+							<td style="border-bottom:none;" valign="middle"><br><br><%=userID %></td>
+							<td><input type="text" style="height:100px;" class="form-control" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "commentText"></td>
+							<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
+						</tr>
+						<tr>
+							<td colspan="3"><input type="file" name="fileName"></td>
+						</tr>
+					</table>
+			</form>
+			</div>
+		</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	function nwindow(postID,commentID){
+		window.name = "commentParant";
+		var url= "commentUpdate.jsp?postID="+postID+"&commentID="+commentID;
+		window.open(url,"","width=600,height=230,left=300");
+	}
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script> 
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-		<%-- <div class="row">
-				
-				<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
-				<thead>
-					<tr>
-						<th  colspan = "3" style="background-color:#eeeeee; text-align:center;">게시판 글 보기</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td style="width: 20%">글제목</td>
-						<td colspan="2"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></td>
-					</tr>
-					
-					<tr>
-						<td>작성자</td>
-						<td colspan="2"><%= post.getUserID() %>
-					</tr>
-					<tr>
-						<td>>작성일자</td>
-						<td colspan="2"><%= post.getPostDate().substring(0,11) + post.getPostDate().substring(11,13)+"시"+post.getPostDate().substring(14,16)+"분"%><%= post.getUserID() %></td>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td colspan="2" style="min-height:200px; text-align: left;"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></td>
-					</tr>
-				</tbody>
-					
-				</table>
-				
-			
-			<a href="findItem.jsp" class="btn-btn-primary">목록</a>
-			<%
-				if (userID != null && userID.equals(post.getUserID())){
-			%>
-				<a href="update.jsp?postID=<%= postID %>" class="btn btn-primary">수정</a>
-				<a onclick="return confirm('삭제하시겠습니까?')" href="deleteAction.jsp?postID=<%= postID %>" class="btn btn-primary">삭제</a>
-			<% 
-			}
-			%>
-		</div> --%>
+		
 	</div>
 	
 

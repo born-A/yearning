@@ -45,7 +45,7 @@
 	
 	<div class="container">
 		<div class="row">
-			<form method="post" action="updateAction.jsp?postID=<%= postID%>">
+			<form method="post" enctype="multipart/form-data" action="updateAction.jsp?postID=<%= postID%>">
 				<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
 				<thead>
 					<tr>
@@ -60,10 +60,12 @@
 						<td><textarea  class="form-control" placeholder="글 내용" name="postContent" maxlength="2048" style="height:350px;"><%=post.getPostContent()%></textarea></td>
 						
 					</tr>
+					<td><input type="file" name="fileName"></td>
 				</tbody>
 					
 				</table>
 				<input type="submit" class="btn btn-primary pull-right" value="글수정">
+				
 			</form>
 			
 		</div>

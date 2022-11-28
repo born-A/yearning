@@ -3,7 +3,16 @@
 <%@ page import="post.PostDAO" %>
 <%@ page import="post.Post" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="post.PostDAO" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <% request.setCharacterEncoding("UTF-8"); %>
+<%@ page import="java.nio.file.Files" %>
+<%@ page import="java.nio.file.Path" %>
+<%@ page import="java.nio.file.Paths" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +22,8 @@
 <body>
 	<%	
 	String userID = null;
+	
+	
 	if(session.getAttribute("userID") != null){
 		userID = (String)session.getAttribute("userID"); // 자신에게 할당된 session ID를담아줌.
 		
@@ -28,7 +39,7 @@
 	if(request.getParameter("postID") != null){
 		postID = Integer.parseInt(request.getParameter("postID"));
 	}
-	if(postID == -2){
+	if(postID == 0){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글입니다.')");
@@ -36,6 +47,29 @@
 		script.println("</script>");
 	}
 	Post post = new PostDAO().getPost(postID);
+	
+	String path = "/Users/bona/git/repository/Yearning/src/main/webapp/postUpload";	//사진을 저장할 경로 */
+	String encType = "utf-8";				//변환형식
+	int maxSize=5*1024*1024;				//사진의 size
+
+
+	int boardID = 0;
+	if (request.getParameter("boardID") != null){
+		boardID = Integer.parseInt(request.getParameter("boardID"));
+	}
+
+	
+	MultipartRequest multi = null;
+	
+	multi = new MultipartRequest(request,path,maxSize,encType,new DefaultFileRenamePolicy());		
+	String fileName = multi.getFilesystemName("fileName");
+	String postTitle = multi.getParameter("postTitle");
+	String postContent = multi.getParameter("postContent");
+
+	post.setPostTitle(postTitle);
+	post.setPostContent(postContent);
+
+	
 	if(!userID.equals(post.getUserID())){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -46,7 +80,7 @@
 	
 	
 	else{
-		if(request.getParameter("postTitle") == null || request.getParameter("postContent")== null || request.getParameter("postTitle").equals("") || request.getParameter("postContent").equals("") ) {
+		if(post.getPostTitle().equals("") || post.getPostContent().equals("") ) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('입력이 안 된 항목이 있습니다.')");
@@ -54,7 +88,7 @@
 					script.println("</script>");
 				} else {
 					PostDAO postDAO = new PostDAO(); //db 접근 객체 만들기
-					int result = postDAO.update(postID,  request.getParameter("postTitle"),request.getParameter("postContent"));
+					int result = postDAO.update(postID,  post.getPostTitle(),post.getPostContent());
 					if(result == -1){
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
@@ -65,9 +99,31 @@
 					else { // 회원가입이 이루어진 경우
 					
 						PrintWriter script = response.getWriter();
-						script.println("<script>");
-						script.println("location.href='findItem.jsp'");
-						script.println("</script>");
+						if(fileName != null){
+							File delFile = new File(path+"//"+postID+".jpg");
+							if(delFile.exists()){
+								delFile.delete();
+							}
+							Path oldfile = Paths.get(path+"//"+fileName);
+					        Path newfile = Paths.get(path+"//"+(postID)+".jpg");
+							/* File oldFile = new File(path+"\\"+fileName);
+							File newFile = new File(path+"\\"+(postID)+".jpg"); */
+							/* oldFile.renameTo(newFile); */
+							Files.move(oldfile, newfile);
+						}
+						/* if(fileName != null){
+							String real = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\bbsUpload";
+							File delFile = new File(real+"\\"+bbsID+"사진.jpg");
+							if(delFile.exists()){
+								delFile.delete();
+							}
+							File oldFile = new File(realFolder+"\\"+fileName);
+							File newFile = new File(realFolder+"\\"+bbsID+"사진.jpg");
+							oldFile.renameTo(newFile);
+						} */
+				 		script.println("<script>");
+						script.println("location.href= \'view.jsp?postID="+(postID)+"\'");
+				 		script.println("</script>");
 					}
 				}
 	}
