@@ -8,6 +8,7 @@
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page import="java.net.URLDecoder"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -52,6 +53,12 @@
     		if (request.getParameter("pageNumber") != null){
     			pageNumber = Integer.parseInt(request.getParameter("pageNumber")); //파라미터는 꼭 이런식으로 바꿔줘야됨
     		}
+    	%>
+    	<%
+    	String cp = request.getContextPath();
+    	request.setCharacterEncoding("UTF-8");
+    	
+    	Cookie[] ck = request.getCookies();
     	%>
     	<%
         	if(userID == null){
@@ -296,8 +303,17 @@
                     </div>
                     <!-- Side widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Side Widget</div>
-                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                        <div class="card-header">최근 본 글 목록</div>
+                        
+                        <div class="card-body"><%
+                        	if(ck != null){
+                        		for(Cookie c : ck){
+                        			if(c.getName().indexOf("sname")!=-1){
+                        				out.println(java.net.URLDecoder.decode(c.getValue(), "UTF-8")+"<br/>");
+                        			}
+                        		}
+                        	}
+                        %></div>
                     </div>
                 </div>
             </div>

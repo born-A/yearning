@@ -12,6 +12,7 @@
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="post.JjimDAO" %>
 <%@ page import="post.Jjim" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -106,10 +107,21 @@
                     <!-- Post content-->
                     <article>
                         <!-- Post header-->
-                        <header class="mb-4">
+                        <header class="mb-4"></header>
+                        <%
+                        String offpostTitles = offpost.getOffpostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>");
+                        %>
                         <% 	
 					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/offpostUpload";
 					File viewFile = new File(real+"/"+offpostID+".jpg");
+					
+					String cp = request.getContextPath();
+					request.setCharacterEncoding("UTF-8");
+					
+					Cookie c = new Cookie("sname1",URLEncoder.encode(offpostTitles,"UTF-8"));
+					c.setMaxAge(50*60*24);
+					response.addCookie(c);
+
 					/* if(viewFile.exists()){ */
 				%>
                             <!-- Post title-->
