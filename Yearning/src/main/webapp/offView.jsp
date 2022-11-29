@@ -1,3 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import="java.io.PrintWriter" %>
+    <%@ page import="offline.OffpostDAO" %>
+    <%@ page import="offline.Offpost" %>
+    <%@ page import="comment.Comment" %>
+<%@ page import="comment.CommentDAO" %>
+    <%@ page import="java.util.ArrayList" %>
+    <%@ page import="java.io.File" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page import="post.JjimDAO" %>
+<%@ page import="post.Jjim" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,24 +23,82 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+         <link href="./resources/css/styles.css" rel="stylesheet" />
+        <link href="./resources/css/findItem_styles.css" rel="stylesheet" />
     </head>
     <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+        <%
+    		String userID = null;
+    		if(session.getAttribute("userID") != null){
+    			userID = (String) session.getAttribute("userID");
+    		}
+    		int offpostID = 0;
+    		if(request.getParameter("offpostID") != null){
+    			offpostID = Integer.parseInt(request.getParameter("offpostID"));
+    		}
+    		int boardID = 0;
+    		if (request.getParameter("boardID") != null){
+    			boardID = Integer.parseInt(request.getParameter("boardID"));
+    		}
+    		if(offpostID == -1){
+    			PrintWriter script = response.getWriter();
+    			script.println("<script>");
+    			script.println("alert('유효하지 않은 글입니다.')");
+    			script.println("location.href = 'findItem.jsp'");
+    			script.println("</script>");
+    		}
+    		Offpost offpost = new OffpostDAO().getOffpost(offpostID);
+    	%>
+    	<%
+        	if(userID == null){
+        %>
+       
+         <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="home.jsp">Yearning</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+    	<% 
+        	} else {
+        %>
+        	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Yearning</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
+                        <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <% 
+        	}
+        %>
+       
         <!-- Page content-->
         <div class="container mt-5">
             <div class="row">
@@ -35,25 +107,32 @@
                     <article>
                         <!-- Post header-->
                         <header class="mb-4">
+                        <% 	
+					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/offpostUpload";
+					File viewFile = new File(real+"/"+offpostID+".jpg");
+					/* if(viewFile.exists()){ */
+				%>
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">Welcome to Blog Post!</h1>
+                            <h1 class="fw-bolder mb-1"><%=offpost.getOffpostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on January 1, 2022 by Start Bootstrap</div>
+                            <div class="text-muted fst-italic mb-2"> <%= offpost.getOffpostDate().substring(0,11) + offpost.getOffpostDate().substring(11,13)+"시"+offpost.getOffpostDate().substring(14,16)+"분"%></div>
                             <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
-                        </header>
+                            
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" src="offpostUpload/<%=offpostID %>.jpg" alt="..." /></figure>
                         <!-- Post content-->
                         <section class="mb-5">
-                            <p class="fs-5 mb-4">Science is an enterprise that should be cherished as an activity of the free human mind. Because it transforms who we are, how we live, and it gives us an understanding of our place in the universe.</p>
-                            <p class="fs-5 mb-4">The universe is large and old, and the ingredients for life as we know it are everywhere, so there's no reason to think that Earth would be unique in that regard. Whether of not the life became intelligent is a different question, and we'll see if we find that.</p>
-                            <p class="fs-5 mb-4">If you get asteroids about a kilometer in size, those are large enough and carry enough energy into our system to disrupt transportation, communication, the food chains, and that can be a really bad day on Earth.</p>
-                            <h2 class="fw-bolder mb-4 mt-5">I have odd cosmic thoughts every day</h2>
-                            <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
-                            <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
+                           <p class="lead"><%=offpost.getOffpostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></p>
                         </section>
+                         <a href="findItem.jsp" class="btn-btn-primary">목록</a>
+			<%
+				if (userID != null && userID.equals(offpost.getUserID())){
+			%>
+				<a href="offupdate.jsp?offpostID=<%= offpostID %>&boardID=<%=boardID %>" class="btn btn-primary">수정</a>
+				<a onclick="return confirm('삭제하시겠습니까?')" href="offdeleteAction.jsp?offpostID=<%=offpostID %>&boardID=<%=boardID %>" class="btn btn-primary">삭제</a>
+			<% 
+			}
+			%>
                     </article>
                     <!-- Comments section-->
                     <section class="mb-5">

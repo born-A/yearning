@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ page import="java.io.PrintWriter" %>
+    <%@ page import="issue.IssueDAO" %>
+    <%@ page import="issue.Issue" %>
+    <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -89,8 +93,8 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
-                            <h1>Clean Blog</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                            <h1>Trends</h1>
+                            <span class="subheading">최근 유행하는 트렌드를 소개합니다.</span>
                         </div>
                     </div>
                 </div>
@@ -100,7 +104,30 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <!-- Post preview-->
+              
+               <%
+            	IssueDAO issueDAO = new IssueDAO();
+                ArrayList<Issue> list = issueDAO.getList(pageNumber);
+                for(int i = 0; i < list.size(); i++){
+             %>   	
+				<!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="post.html">
+                            <h2 class="post-title"><a href="issueView.jsp?issueID=<%=list.get(i).getIssueID()%>"><%= list.get(i).getIssueTitle()%></a></h2>
+                            <h3 class="post-subtitle"><%=list.get(i).getIssueContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">Admin</a>
+                            <%= list.get(i).getIssueDate().substring(0,11) + list.get(i).getIssueDate().substring(11,13)+"시"+list.get(i).getIssueDate().substring(14,16)+"분"%>
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <%
+                }
+                %> 	
+              <!-- Post preview-->
                     <div class="post-preview">
                         <a href="post.html">
                             <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
@@ -154,9 +181,17 @@
                     <!-- Divider-->
                     <hr class="my-4" />
                     <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                    <%
+				
+					if(userID.equals("admin")){
+					%>
+					<div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="issueWrite.jsp">새 트렌드 등록하기</a></div>
+					<%
+					}
+					%>       
                 </div>
             </div>
+            
         </div>
         <!-- Footer-->
         <footer class="border-top">
