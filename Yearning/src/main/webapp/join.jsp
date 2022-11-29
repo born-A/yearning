@@ -16,6 +16,40 @@
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <link href="./resources/css/issue_styles.css" rel="stylesheet" /> 
 <script type="text/javascript" src="./resources/js/validation.js"></script>
+<script type-"text/javascript">
+function checkjoin()
+{
+	/* alert("사용자 함수를 호출함"); */
+	if (document.join.userID.value == "")
+	{
+		alert("아이디를 입력하여 주시기 바랍니다.");
+		document.join.userID.focus();
+		return false;
+	}
+	
+	if ((document.join.userID.value.length < 4) || 
+	    	(document.memberJoin.id.value.length >= 9))
+		{
+			alert("아아디는 4자에서 8자까지만 입력 해주세요");
+			document.join.userID.focus();
+			return false;
+		}
+	
+	if (document.join.userPassword.value == "")
+	{
+		alert("비밀번호를 입력 해주세요.");
+		document.join.userPassword.focus();
+		return false;
+	}
+	if (document.join.userEmail.value == "")
+	{
+		alert("이메일을 입력 해주세요.");
+		document.join.userEmail.focus();
+		return false;
+	}
+	document.join.submit();
+}
+</script>
 <style>
    
  /* html,
@@ -85,7 +119,7 @@
             </div>
    </header>
    <section class="form-signin">
-      <form action="joinAction.jsp" method="post">
+      <form name="join" action="joinAction.jsp" method="post">
          <img class="mb-4" src="./resources/images/favicon.ico" alt="" width="72" height="57">
          <h1 class="h3 mb-3 fw-normal">Yearning Sign Up</h1>
          <div><p></div>
@@ -119,7 +153,7 @@
          </div>  
          </div>
          <div><p> </div>
-         <button class="w-100 btn btn-lg btn-primary" type="submit">회원가입</button>
+         <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="checkjoin()">회원가입</button>
          <p class="mt-5 mb-3 text-muted">&copy; Yearning</p>
       </form>
    </section>

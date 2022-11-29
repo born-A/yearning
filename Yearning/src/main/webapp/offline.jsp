@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,8 +15,11 @@
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <link href="./resources/css/offline_style.css" rel="stylesheet" />
         <link href="./resources/css/issue_styles.css" rel="stylesheet" /> 
+        <fmt:setLocale value='<%=request.getParameter("language") %>'/>
+        
     </head>
     <body>
+    
        <%
     		String userID = null;
     		if(session.getAttribute("userID") != null){
@@ -72,99 +76,102 @@
         	}
         %>
        
-        
+        <fmt:bundle basename="bundle.message">
         
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">오프라인 탐방</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <h1 class="display-4 fw-bolder"><fmt:message key="title"/></h1>
+                    <p class="lead fw-normal text-white-50 mb-0"><fmt:message key="subtitle"/></p>
                 </div>
             </div>
         </header>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
+            <div class="text-right">
+            	<a href="?language=ko">Korean</a>|<a href="?language=en">English</a>
+            </div>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">
                         <div class="card h-100">
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">복합쇼핑몰</div>
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><fmt:message key="1tag"/></div>
                             <!-- Product image-->
                             <img class="card-img-top" src="https://ifh.cc/g/xskYnw.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">스타필드 고양</h5>
+                                    <h5 class="fw-bolder"><fmt:message key="1name"/></h5>
                                     <!-- Product price-->
-                                    경기도 고양시 고양대로 1955
+                                    <fmt:message key="1addr"/>
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlinePost.jsp?boardID=1">이동하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlinePost.jsp?boardID=1"><fmt:message key="go"/></a></div>
                             </div>
                         </div>
                     </div>
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">백화점</div>
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><fmt:message key="2tag"/></div>
                             <!-- Product image-->
                             <img class="card-img-top" src="https://ifh.cc/g/kaCjgG.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">더현대서울</h5>
-                                    서울특별시 영등포구 여의대로 108
+                                    <h5 class="fw-bolder"><fmt:message key="2name"/></h5>
+                                    <fmt:message key="2addr"/>
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlinePost.jsp?boardID=2">이동하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlinePost.jsp?boardID=2"><fmt:message key="go"/></a></div>
                             </div>
                         </div>
                     </div>
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">쇼핑몰</div>
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><fmt:message key="3tag"/></div>
                             <!-- Product image-->
                             <img class="card-img-top" src="https://ifh.cc/g/cb8cjz.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">롯데몰 수원점</h5>
-                                 경기도 수원시 권선구 세화로 134
+                                    <h5 class="fw-bolder"><fmt:message key="3name"/></h5>
+                                 <fmt:message key="3addr"/>
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlinePost.jsp?boardID=3">이동하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlinePost.jsp?boardID=3"><fmt:message key="go"/></a></div>
                             </div>
                         </div>
                     </div>
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">아웃렛몰</div>
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem"><fmt:message key="4tag"/>아웃렛몰</div>
                             <!-- Product image-->
                             <img class="card-img-top" src="https://ifh.cc/g/WzLy5d.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">현대프리미엄아울렛 김포점
+                                    <h5 class="fw-bolder"><fmt:message key="4name"/>
 </h5>
-                                 경기도 김포시 고촌읍 아라육로152번길 100 KR
+                                 <fmt:message key="4addr"/>
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlinePost.jsp?boardID=4">이동하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlinePost.jsp?boardID=4"><fmt:message key="go"/>이동하기</a></div>
                             </div>
                         </div>
                     </div>
@@ -172,6 +179,7 @@
                 </div>
             </div>
         </section>
+         </fmt:bundle>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; bona 2022 jsp-wep</p></div>
@@ -180,5 +188,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="./resources/js/scripts.js"></script>
+       
     </body>
 </html>
