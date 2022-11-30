@@ -16,8 +16,29 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./resources/css/styles.css" rel="stylesheet" />
+        <script type="text/javascript">
+  var imgArray=new Array();
+  imgArray[0]="1.jpg";
+  imgArray[1]="2.jpg";
+  imgArray[2]="3.jpg";
+  imgArray[3]="4.jpg";
+
+  function showImage(){
+   var imgNum=Math.round(Math.random()*3);
+   var objImg=document.getElementById("introimg");
+   objImg.src=imgArray[imgNum];
+   setTimeout(showImage,5000);
+  }
+
+ </script>
+ <style>
+ .itemimage {
+    filter: brightness(40%)
+}
+ 
+ </style>
     </head>
-    <body id="page-top">
+    <body id="page-top" onload="showImage()">
     	<%
     		String userID = null;
     		if(session.getAttribute("userID") != null){
@@ -38,11 +59,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                     </ul>
                 </div>
@@ -60,11 +80,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
                     </ul>
                 </div>
@@ -119,24 +138,32 @@
                     <div class="col-lg-8">
                         <h2 class="text-white mb-4">이 아이템 어디에 있을까?</h2>
                         <p class="text-white-50">
-                            아이템의이름을 정확히 알지 못해 필요한 아이템 구입을 못하거나, 원하는 아이템이 오프라인 매장 재고가 없어서 헛걸음하신적 있으신가요?
-                         
+                            아이템의 이름을 정확히 알지 못해 필요한 아이템 구입을 못하거나, 원하는 아이템이 오프라인 매장 재고가 없어서 헛걸음하신적 있으신가요?
+ 					
                            Yearning에서 다양한 지역에 거주하고 있는 유저들의 정보로 당신이 원하는 아이템을 찾아보세요!
                         </p>
                     </div>
                 </div>
-                <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
+                
             </div>
+           
         </section>
+ <img class="itemimage" src="https://ifh.cc/g/hYszko.jpg" alt="..." />
 
         <section class="projects-section bg-light" id="projects">
+       <div>
+       	<h1 style="text-align:center;">Main Service</h1>
+       	
+       	<br>
+       	<br>
+       </div>
             <div class="container px-4 px-lg-5">
                 <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." /></div>
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="https://ifh.cc/g/V68DJP.jpg" alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
-                            <h4>Main Service</h4>
+                            <h4>아이템 찾기</h4>
                             <p class="text-black-50 mb-0">당신이 찾는 아이템의 이미지를 포함한 게시물을 올려서 다른 유저들에게 도움을 요청해보세요! 그들이 당신이 찾는 아이템의 위치를 찾아줄 수 있습니다 :)</p>
                         </div>
                     </div>
@@ -144,15 +171,17 @@
             
            </div>
                         
-                <div><h3>Sub Services</h3></h4></div>
+                <div><h2 style="text-align:center;">Sub Services</h2>
+                <br><br>
+                </div>
                 <!-- Project One Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="./resources/images/shoppingmall.jpeg" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="https://ifh.cc/g/65mDwN.jpg" alt="..." /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">쇼핑몰 탐색</h4>
+                                    <h4 class="text-white">오프라인 탐색</h4>
                                     <p class="mb-0 text-white-50">다양한 오프라인 
                                    쇼핑몰의 아이템을 확인할 수 있습니다. Yearning 유저들이 해당 쇼핑몰에 방문하여 아이템 유뮤를 직접 올린 게시물로, 오프라인 매장의 아이템 유무를 파악 가능합니다.</p>
                                     <hr class="d-none d-lg-block mb-0 ms-0" />
@@ -163,7 +192,7 @@
                 </div>
                 <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="./resources/images/finditemEx.png" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="https://ifh.cc/g/X8cang.jpg" alt="..." /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -177,23 +206,7 @@
                         </div>
                     </div>
                 </div>
-                <!--  
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="./resources/images/demo-image-01.jpg" alt="..." /></div>
-                    <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">트렌드</h4>
-                                    <p class="mb-0 text-white-50">한정 상품, 신상품 등의 이슈들이 게시되는 공간입니다. 이곳에서 당신이 새롭게 갈망하게 될 아이템을 찾을 수 있을지도...?</p>
-                                    <hr class="d-none d-lg-block mb-0 ms-0" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
-            </div>
+       
         </section>
         <!-- Signup-->
         <section class="signup-section" id="signup">

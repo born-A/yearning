@@ -55,11 +55,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="issue.jsp">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                     </ul>
                 </div>
@@ -77,10 +76,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                       <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="issue.jsp">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
                         <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
                        
@@ -99,7 +97,7 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">아이템 찾기</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <p class="lead fw-normal text-white-50 mb-0">find your yearning item !</p>
                 </div>
             </div>
         </header>
@@ -107,19 +105,28 @@
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
            <div class="row gx-4 gx-lg-5 align-items-center my-5">
-                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="…" /></div>
+                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://ifh.cc/g/Mcvj35.jpg" alt="…" /></div>
                 <div class="col-lg-5">
-                    <h1 class="font-weight-light">Business Name or Tagline</h1>
-                   <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+                    <h1 class="font-weight-light">당신이 원하는 아이템을 찾아보세요 !</h1>
+                   <p>당신이 찾는 아이템의 이미지를 포함한 <br>게시물을 올려서 다른 유저들에게 <br>도움을 요청해보세요! <br>그들이 당신이 찾는 아이템의 위치를 찾아줄 수 있습니다 :)</p>
                     <a class="btn btn-primary" href="write.jsp">게시물 등록하기</a>
                 </div>
             </div>
             <!-- Call to Action-->
              <div class="card text-white bg-secondary my-5 py-4 text-center">
-                <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
-            <form name = "p_search">
-					<input type="button" value="검색" onclick="nwindow()"/>
+              
+            <div class="card mb-4">
+                       
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="원하는 아이템을 검색 해보세요 !" aria-label="Enter search term..." aria-describedby="button-search" />
+                                <form name = "p_search">
+					<input type="button" value="검색" class="btn btn-primary" id="button-search" onclick="nwindow()"/>
 				</form>	
+                            </div>
+                        </div>
+                    </div>
+            	
             </div>
             <!-- Content Row-->
             <div class="row gx-4 gx-lg-5">

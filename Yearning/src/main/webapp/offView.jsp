@@ -25,7 +25,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
          <link href="./resources/css/styles.css" rel="stylesheet" />
-        <link href="./resources/css/findItem_styles.css" rel="stylesheet" />
+        <!-- <link href="./resources/css/findItem_styles.css" rel="stylesheet" /> -->
     </head>
     <body>
         <%
@@ -49,6 +49,12 @@
     			script.println("</script>");
     		}
     		Offpost offpost = new OffpostDAO().getOffpost(offpostID);
+    	%>
+    	<%
+    	String cp = request.getContextPath();
+    	request.setCharacterEncoding("UTF-8");
+    	
+    	Cookie[] ck = request.getCookies();
     	%>
     	<%
         	if(userID == null){
@@ -99,6 +105,58 @@
         <% 
         	}
         %>
+        <%
+	if(boardID == 1){
+%>
+		<header class="py-5 bg-dark border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                <br>
+                    <h1 class="text-white fw-bolder">스타필드 고양</h1>
+                    <p class="text-white-50 lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                </div>
+            </div>
+        </header>
+        
+                
+<% }
+	else if(boardID == 2){
+%>
+		<header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">더현대서울</h1>
+                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                </div>
+            </div>
+        </header>
+        
+                
+<% }
+	else if(boardID == 3){
+%>
+		<header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">롯데몰 수원점</h1>
+                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                </div>
+            </div>
+        </header>
+        
+<% }
+	else if(boardID == 4){
+%>
+		<header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">현대프리미엄아울렛 김포점</h1>
+                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                </div>
+            </div>
+        </header>
+        
+<% }%>
        
         <!-- Page content-->
         <div class="container mt-5">
@@ -112,10 +170,10 @@
                         String offpostTitles = offpost.getOffpostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>");
                         %>
                         <% 	
-					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/offpostUpload";
+					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/offUpload";
 					File viewFile = new File(real+"/"+offpostID+".jpg");
 					
-					String cp = request.getContextPath();
+					String s = request.getContextPath();
 					request.setCharacterEncoding("UTF-8");
 					
 					Cookie c = new Cookie("sname1",URLEncoder.encode(offpostTitles,"UTF-8"));
@@ -131,12 +189,12 @@
                             <!-- Post categories-->
                             
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="offpostUpload/<%=offpostID %>.jpg" alt="..." /></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" src="offUpload/<%=offpostID %>.jpg" alt="..." /></figure>
                         <!-- Post content-->
                         <section class="mb-5">
                            <p class="lead"><%=offpost.getOffpostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></p>
                         </section>
-                         <a href="findItem.jsp" class="btn-btn-primary">목록</a>
+                         <a href="offlinePost.jsp?boardID=<%=boardID %>" class="btn btn-primary">목록</a>
 			<%
 				if (userID != null && userID.equals(offpost.getUserID())){
 			%>
@@ -191,42 +249,22 @@
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
-                    <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Search</div>
-                        <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Categories</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
+                  
                     <!-- Side widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Side Widget</div>
-                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                        <div class="card-header">최근 본 글 목록</div>
+                        
+                        <div class="card-body"><%
+                        	if(ck != null){
+                        		for(Cookie cs : ck){
+                        			if(cs.getName().indexOf("sname")!=-1){
+                        				out.println(java.net.URLDecoder.decode(cs.getValue(), "UTF-8")+"<br/>");
+                        			}
+                        		}
+                        	}
+                        %>
+                       </div>
                     </div>
                 </div>
             </div>
