@@ -33,7 +33,7 @@
        <!--  <link href="./resources/css/borderbox_styles.css" rel="stylesheet" /> -->
         <!-- <link href="./resources/css/borderbox_findItem_styles.css" rel="stylesheet" /> -->
         <link href="./resources/css/styles.css" rel="stylesheet" />
-        <link href="./resources/css/findItem_styles.css" rel="stylesheet" />
+        <!-- <link href="./resources/css/findItem_styles.css" rel="stylesheet" /> -->
     </head>
     <body>
         <%
@@ -72,11 +72,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                     </ul>
                 </div>
@@ -94,10 +93,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
                         <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
                     </ul>
@@ -114,7 +112,7 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder"><%=post.getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></h1>
+                    <h1 class="display-4 fw-bolder">아이템 찾아주세요 !</h1>
                     <p class="lead fw-normal text-white-50 mb-0">Please Find This Item !!</p>
                 </div>
             </div>
@@ -131,7 +129,7 @@
 					File viewFile = new File(real+"/"+postID+".jpg");
 					/* if(viewFile.exists()){ */
 				%>
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="postUpload/<%=postID %>.jpg" border="50px" width=600px" height="500px" alt="..." /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="postUpload/<%=postID %>.jpg" border="2px" width=600px" height="500px" alt="..." /></div>
                     <%  %>
                     
                     <div class="col-md-6">
@@ -142,25 +140,23 @@
                         </div>
                         <p class="lead"><%=post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></p>
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            
                             <%	JjimDAO jjimDAO = new JjimDAO();
 		ArrayList<Jjim> list1 = jjimDAO.getJjim(userID, postID);
 		if (list1.isEmpty()){%>
                             <button class="btn btn-outline-dark flex-shrink-0" type="button" onclick = "location.href='jjimAction.jsp?postID=<%=postID%>'">
-                                <i class="bi-cart-fill me-1"></i>
-                            	찜하기
+                                
+                            	<img src="https://ifh.cc/g/7dyjoy.png">
                             	</button>
 	<%	}
 		else{%>
-		<button class="btn btn-outline-dark flex-shrink-0" type="button" onclick = "location.href='jjimAction.jsp?postID=<%=postID%>'">
-                                <i class="bi-cart-fill me-1"></i>
-                            	찜해제
+		<button style="padding: 10px 10px;" class="btn btn-outline-dark flex-shrink-0" type="button" onclick = "location.href='jjimAction.jsp?postID=<%=postID%>'">
+                              <img src="https://ifh.cc/g/7dyjoy.png">
                             	</button>
+                            	<br>
 	<%	} %>	
-                           
-                            
-	
-                            <a href="findItem.jsp" class="btn-btn-primary">목록</a>
+                          
+                            <div><p><p></div><br>
 			<%
 				if (userID != null && userID.equals(post.getUserID())){
 			%>
@@ -169,8 +165,27 @@
 			<% 
 			}
 			%>
+			</div>
+			</div>
+			<div><p></div>
+			<br>
 			
 			<div class="container">
+			
+			<div class="form-group">
+			<form method="post" encType = "multipart/form-data" action="commentAction.jsp?postID=<%= postID %>">
+					<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+						<tr>
+							<td style="border-bottom:none;" valign="middle"><br><br><%=userID %></td>
+							<td><input type="text" style="height:100px;" class="form-control" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "commentText"></td>
+							<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
+						</tr>
+						<tr>
+							<td colspan="3"><input type="file" name="fileName"></td>
+						</tr>
+					</table>
+			</form>
+			</div>
 			<div class="row">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<tbody>
@@ -224,22 +239,8 @@
 				</table>
 			</div>
 		</div>
-		
-			<div class="container">
-			<div class="form-group">
-			<form method="post" encType = "multipart/form-data" action="commentAction.jsp?postID=<%= postID %>">
-					<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-						<tr>
-							<td style="border-bottom:none;" valign="middle"><br><br><%=userID %></td>
-							<td><input type="text" style="height:100px;" class="form-control" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "commentText"></td>
-							<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
-						</tr>
-						<tr>
-							<td colspan="3"><input type="file" name="fileName"></td>
-						</tr>
-					</table>
-			</form>
-			</div>
+		<div style="text-align:center;">
+			<a style="display:block;  width:100px; height:60px;" href="findItem.jsp" class="btn btn-primary">목록</a>
 		</div>
 		</div>
 	</div>

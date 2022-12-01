@@ -58,11 +58,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                       <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                     </ul>
                 </div>
@@ -80,14 +79,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
-                        <li class="dropdown">
-                        <li><a href="jjiPost.jsp">북마크</a></li>
-              		<li><a href="logout.jsp">로그아웃</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
+              		 <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li> -->
                     </ul>
                 </div>
@@ -100,11 +96,11 @@
         
         
          <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="bg-dark py-5" style="background-image: url('https://ifh.cc/g/dTzxQ9.jpg')">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">아이템 찾기</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <h1 class="display-4 fw-bolder">Yearned 아이템</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">내가 관심있는 아이템은..?</p>
                 </div>
             </div>
         </header>
@@ -112,18 +108,20 @@
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
            <div class="row gx-4 gx-lg-5 align-items-center my-5">
-                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="…" /></div>
+                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://ifh.cc/g/G3C8G4.jpg" alt="…" /></div>
                 <div class="col-lg-5">
-                    <h1>북마크<br></h1>
-		<p><%=userID %>님이 북마크하신 목록입니다.<br><br></p>
+                    <h1>스크랩<br></h1>
+					<p class="card-text"><%=userID %> 님은 어떤 아이템을 'yearning' 하나요? </p>
+                            <p>당신이 관심있는 아이템을 확인해보세요 :) </p>
                 </div>
             </div>
             <!-- Call to Action-->
              <div class="card text-white bg-secondary my-5 py-4 text-center">
-                <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
+                <div class="card-body"><p class="text-white m-0"><%=userID %> 님이 스크랩하신 목록입니다.</p></div>
             </div>
             <!-- Content Row-->
             <div class="row gx-4 gx-lg-5">
+             
            <%
 							JjimDAO jjimDAO = new JjimDAO();
 							ArrayList<Post> list = jjimDAO.getList(userID, pageNumber);
@@ -132,15 +130,15 @@
              <div class="col-md-4 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
-                         <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                         <img class="card-img-top" src="postUpload/<%=list.get(i).getPostID() %>.jpg" alt="..." />
                             <h2 class="card-title"><a href="view.jsp?postID=<%=list.get(i).getPostID()%>"><%= list.get(i).getPostTitle()%></a></h2> 
                            <%--  <h2 class="card-title"><a href="uploadex.jsp?postID=<%=list.get(i).getPostID()%>"><%= list.get(i).getPostTitle()%></a></h2> --%>
-                            <p class="card-text"><%= list.get(i).getPostID()%></p>
-                            <p class="card-text"><%= list.get(i).getUserID()%></p>
+                          
+                            <p class="card-text">작성자 : <%= list.get(i).getUserID()%></p>
                             <p class="card-text"><%= list.get(i).getPostDate().substring(0,11) + list.get(i).getPostDate().substring(11,13)+"시"+list.get(i).getPostDate().substring(14,16)+"분"%></p>
-                            <p class="card-text"><a href="view.jsp?bbsID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></p>
+                            
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="view.jsp?postID=<%=list.get(i).getPostID()%>">상세보기</a></div>
                     </div>
                 </div>
              	<%
@@ -154,36 +152,13 @@
                         <ul class="pagination justify-content-center my-4">
                             <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
                             <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                    
                             <li class="page-item"><a class="page-link" href="#!">Older</a></li>
                         </ul>
                     </nav>
             </div>
             
-                    <!-- Side widgets-->
-                <div class="col-lg-4">
-                    <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Search</div>
-                        <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Categories widget-->
-                   
-                    <!-- Side widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Side Widget</div>
-                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                    </div>
-                </div>
-                
+            
                
         </div>
 
@@ -202,7 +177,7 @@
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Yearning</p></div>
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; bona</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

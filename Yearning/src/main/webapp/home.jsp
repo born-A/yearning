@@ -120,7 +120,7 @@
                 <div class="text-center">
                     <h1 class="mx-auto my-0 text-uppercase">Yearning</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">당신이 갈망하는 아이템, Yearning에서 찾아드립니다.</h2>
-                    <a class="btn btn-primary" href="offline.jsp">탐방하기</a>
+                    <a class="btn btn-primary" href="#letstart">탐방하기</a>
                 </div>
             </div>
             
@@ -137,41 +137,46 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
                         <h2 class="text-white mb-4">이 아이템 어디에 있을까?</h2>
+                        <p>
                         <p class="text-white-50">
-                            아이템의 이름을 정확히 알지 못해 필요한 아이템 구입을 못하거나, 원하는 아이템이 오프라인 매장 재고가 없어서 헛걸음하신적 있으신가요?
- 					
-                           Yearning에서 다양한 지역에 거주하고 있는 유저들의 정보로 당신이 원하는 아이템을 찾아보세요!
-                        </p>
+                            아이템의 이름을 정확히 알지 못해 필요한 아이템 구입을 못하거나,<br>
+                           
+                            원하는 아이템이 오프라인 매장 재고가 없어서 헛걸음하신적 있으신가요?</p>
+ 					<h4 class="text-white-50">
+                           Yearning에서 다양한 지역에 거주하고 있는 유저들의 정보로 <br>당신이 원하는 아이템을 찾아보세요!
+                           <p>
+                        </h4>
                     </div>
                 </div>
                 
             </div>
            
         </section>
- <img class="itemimage" src="https://ifh.cc/g/hYszko.jpg" alt="..." />
+ <img class="itemimage" src="https://ifh.cc/g/GCbcxB.jpg" alt="..." />
 
         <section class="projects-section bg-light" id="projects">
        <div>
-       	<h1 style="text-align:center;">Main Service</h1>
+       <br></br>
+       	<h1 style="text-align:center;"><strong>Main Service</strong></h1>
        	
        	<br>
        	<br>
        </div>
-            <div class="container px-4 px-lg-5">
+            <div class="container px-4 px-lg-5" id="letstart">
                 <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="https://ifh.cc/g/V68DJP.jpg" alt="..." /></div>
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="https://ifh.cc/g/dm5CTJ.jpg" alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
-                            <h4>아이템 찾기</h4>
-                            <p class="text-black-50 mb-0">당신이 찾는 아이템의 이미지를 포함한 게시물을 올려서 다른 유저들에게 도움을 요청해보세요! 그들이 당신이 찾는 아이템의 위치를 찾아줄 수 있습니다 :)</p>
+                            <h2>아이템 찾기</h2>
+                            <p class="text-black-50 mb-0">당신이 찾는 아이템의 이미지를 포함한 <br>게시물을 올려서 다른 유저들에게 <br>도움을 요청해보세요! 그들이 당신이 찾는 <br>아이템의 위치를 찾아줄 수 있습니다 :)</p>
                         </div>
                     </div>
                 </div>
             
            </div>
                         
-                <div><h2 style="text-align:center;">Sub Services</h2>
+                <div><h2 style="text-align:center;"><strong>Sub Services</strong></h2>
                 <br><br>
                 </div>
                 <!-- Project One Row-->
@@ -182,8 +187,9 @@
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-left">
                                     <h4 class="text-white">오프라인 탐색</h4>
+                                    <p>
                                     <p class="mb-0 text-white-50">다양한 오프라인 
-                                   쇼핑몰의 아이템을 확인할 수 있습니다. Yearning 유저들이 해당 쇼핑몰에 방문하여 아이템 유뮤를 직접 올린 게시물로, 오프라인 매장의 아이템 유무를 파악 가능합니다.</p>
+                                   쇼핑몰의 아이템을 확인할 수 있습니다. <br>Yearning 유저들이 해당 쇼핑몰에 방문하여 아이템 유뮤를 직접 올린 게시물로, <br>오프라인 매장의 아이템 유무를 파악 가능합니다.</p>
                                     <hr class="d-none d-lg-block mb-0 ms-0" />
                                 </div>
                             </div>
@@ -198,7 +204,8 @@
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-right">
                                     <h4 class="text-white">트렌드</h4>
-                                    <p class="mb-0 text-white-50">한정 상품, 신상품 등의 이슈들이 게시되는 공간입니다. 이곳에서 당신이 새롭게 갈망하게 될 아이템을 찾을 수 있을지도...?
+                                    <p>
+                                    <p class="mb-0 text-white-50">한정 상품, 신상품 등의 이슈들이 게시되는 공간입니다. <br>이곳에서 당신이 새롭게 갈망하게 될 아이템을 찾을 수 있을지도...?
                                     </p>
                                     <hr class="d-none d-lg-block mb-0 me-0" />
                                 </div>
@@ -262,7 +269,7 @@
                                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">후원하기</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                                <div class="small text-black-50">광교산로 154-42</div>
                             </div>
                         </div>
                     </div>
@@ -272,7 +279,7 @@
                                 <i class="fas fa-envelope text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">문의하기</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
+                                <div class="small text-black-50"><a href="#!">ra_ari@naver.com</a></div>
                             </div>
                         </div>
                     </div>
@@ -282,7 +289,7 @@
                                 <i class="fas fa-mobile-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Phone</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">+1 (555) 902-8832</div>
+                                <div class="small text-black-50">+1 (010) 902-8832</div>
                             </div>
                         </div>
                     </div>
@@ -295,7 +302,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2022</div></footer>
+        <footer class="footer bg-black text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; bona </div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

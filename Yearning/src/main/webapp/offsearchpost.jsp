@@ -54,6 +54,10 @@
     		if (request.getParameter("pageNumber") != null){
     			pageNumber = Integer.parseInt(request.getParameter("pageNumber")); //파라미터는 꼭 이런식으로 바꿔줘야됨
     		}
+    		String search = null;
+    		if(request.getParameter("search") != null){
+    			search = request.getParameter("search");
+    		}
     	%>
     	<%
     	String cp = request.getContextPath();
@@ -111,13 +115,12 @@
        <%
 	if(boardID == 1){
 %>
-		<header class="py-5 bg-dark border-bottom mb-4" style="background-image: url('https://ifh.cc/g/mdtj9l.jpg')" >
+		<header class="py-5 bg-dark border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
                 <br>
-                <br>
-                    <h1 class=" fw-bolder">스타필드 고양</h1>
-                    <p style="color:black:" class="lead mb-0"><strong>오프라인 매장에서 아이템을 탐방해보세요 !</strong></p>
+                    <h1 class="text-white fw-bolder">스타필드 고양</h1>
+                    <p class="text-white-50 lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
                 </div>
             </div>
         </header>
@@ -132,9 +135,7 @@
                         <div class="card-body">
                 
                             <h2 class="card-title">스타필드 고양</h2>
-                            <p class="card-text">스타필드 고양점에는 어떤 아이템이 있나요? </p>
-                            <p>당신의 생생한 이야기를 다른 유저들에게 공유해주세요 ! </p>
-                            
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
                             <a class="btn btn-primary" href="offwrite.jsp?boardID=<%=boardID%>">게시물 등록하기</a>
                         </div>
                     </div>
@@ -220,37 +221,35 @@
                     </div>
 <% }%>
 			<div class="row">
-                    <!-- Nested row for non-featured blog posts-->
-                     <%
-							OffpostDAO offpostDAO = new OffpostDAO();
-							ArrayList<Offpost> list = offpostDAO.getList(boardID, pageNumber);
-							for(int i=0; i<list.size(); i++ ){	
-						%>
-                    
-                      
-                        <div class="col-lg-6">
-                        
+			 
                         <% 	
 					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/offUpload";
 					File viewFile = new File(real+"/"+offpostID+".jpg");
 					%>
-                            <!-- Blog post-->
-                            <div class="card mb-4">
-     
-                                <img class="card-img-top" src="offUpload/<%=list.get(i).getOffpostID() %>.jpg"  />
-                                <div class="card-body">
-                                    <div class="small text-muted"></div>
-                                    <h2 class="card-title h4"><a href="offView.jsp?boardID=<%=boardID%>&offpostID=<%= list.get(i).getOffpostID() %>"><%= list.get(i).getOffpostTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></h2>
-                                    <p class="card-text">작성자 : <%= list.get(i).getUserID() %></p>
-                                    <a class="btn btn-primary" href="offView.jsp?boardID=<%=boardID%>&offpostID=<%= list.get(i).getOffpostID() %>">상세 보기</a>
-                                </div>
-                            </div>    
+                    <!-- Nested row for non-featured blog posts-->
+                   <%
+            	OffpostDAO offpostDAO = new OffpostDAO();
+                		   ArrayList<Offpost> list = offpostDAO.searchList(boardID,pageNumber,search);
+							for(int i=0; i<list.size(); i++){	
+							System.out.println(list.get(i));
+             %>   	
+             <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body">
+                         <img class="card-img-top" src="offUpload/<%=list.get(i).getOffpostID() %>.jpg" alt="..." />
+                            <h2 class="card-title"><%= list.get(i).getOffpostTitle()%></a></h2> 
+                           <%--  <h2 class="card-title"><a href="uploadex.jsp?postID=<%=list.get(i).getPostID()%>"><%= list.get(i).getPostTitle()%></a></h2> --%>
+                            <p class="card-text"><%= list.get(i).getUserID()%></p>
+                         
+                            <p class="card-text"><%= list.get(i).getOffpostDate().substring(0,11) + list.get(i).getOffpostDate().substring(11,13)+"시"+list.get(i).getOffpostDate().substring(14,16)+"분"%></p>
+                            
                         </div>
-                        
-                        
-                                    <%
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="offView.jsp?boardID=<%=boardID%>&postID=<%=list.get(i).getOffpostID()%>">상세보기</a></div>
+                    </div>
+                </div>
+             	<%
                 }
-                %> 
+                %> 	
                 </div>
                 </div>
                 <!-- Side widgets-->
@@ -285,20 +284,7 @@
                     </div>
                 </div>
                 
-                    <!-- Pagination-->
-                    <nav aria-label="Pagination">
-                        <hr class="my-0" />
-                        <ul class="pagination justify-content-center my-4">
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                        </ul>
-                    </nav>
-                
+                   
                 
             </div>
         </div>
@@ -312,7 +298,7 @@
         
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; bona</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

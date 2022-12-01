@@ -51,11 +51,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="issue.jsp">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                     </ul>
                 </div>
@@ -73,10 +72,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="issue.jsp">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
                         <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
                        
@@ -88,7 +86,7 @@
         	}
         %>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+        <header class="masthead" style="background-image: url('https://ifh.cc/g/CDpNAD.jpg')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -114,7 +112,7 @@
                     <div class="post-preview">
                         <a href="post.html">
                             <h2 class="post-title"><a href="issueView.jsp?issueID=<%=list.get(i).getIssueID()%>"><%= list.get(i).getIssueTitle()%></a></h2>
-                            <h3 class="post-subtitle"><%=list.get(i).getIssueContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></h3>
+                          
                         </a>
                         <p class="post-meta">
                             Posted by
@@ -127,108 +125,25 @@
                     <%
                 }
                 %> 	
-              <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                            <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on September 24, 2022
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html"><h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2></a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on September 18, 2022
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">Science has not yet mastered prophecy</h2>
-                            <h3 class="post-subtitle">We predict too much for the next year and yet far too little for the next ten.</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on August 24, 2022
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">Failure is not an option</h2>
-                            <h3 class="post-subtitle">Many say exploration is part of our destiny, but it’s actually our duty to future generations.</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on July 8, 2022
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
+              
                     <!-- Pager-->
                     <%
-				
-					if(userID.equals("admin")){
+					if(userID == null){
+						
+					}
+					else if(userID.equals("admin")){
 					%>
 					<div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="issueWrite.jsp">새 트렌드 등록하기</a></div>
 					<%
-					}
-					%>       
+					}else {
+					%>       <%} %>
                 </div>
             </div>
             
         </div>
         <!-- Footer-->
-        <footer class="border-top">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <ul class="list-inline text-center">
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Yearning</div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+      <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; bona
+      </div></footer>
         
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

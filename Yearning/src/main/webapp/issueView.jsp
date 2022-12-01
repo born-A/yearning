@@ -72,11 +72,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                     </ul>
                 </div>
@@ -94,11 +93,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="jjimissue.jsp">스크랩</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.jsp">Logout</a></li>
                     </ul>
                 </div>
@@ -115,7 +113,7 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder"><%=issue.getIssueTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Please Find This Item !!</p>
+                    <p class="lead fw-normal text-white-50 mb-0">최근 유행하는 트렌드입니다. :)</p>
                 </div>
             </div>
         </header>
@@ -131,7 +129,7 @@
 					File viewFile = new File(real+"/"+issueID+".jpg");
 					/* if(viewFile.exists()){ */
 				%>
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="issueUpload/<%=issueID %>.jpg" border="50px" width=600px" height="500px" alt="..." /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="issueUpload/<%=issueID %>.jpg" border="2px" width=600px" height="500px" alt="..." /></div>
                     <%  %>
                     
                     <div class="col-md-6">
@@ -141,13 +139,13 @@
                         </div>
                         <p class="lead"><%=issue.getIssueContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt").replaceAll("\n","<br>") %></p>
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            
                             <%	JjimDAO jjimDAO = new JjimDAO();
 		ArrayList<Jjim> list1 = jjimDAO.getJjim(userID, issueID);
 		if (list1.isEmpty()){%>
                          
                           
-                            <a href="issue.jsp" class="btn-btn-primary">목록</a>
+                            <a href="issue.jsp" class="btn btn-primary">목록</a>
 			
 				<a href="issueUpdate.jsp?issueID=<%= issueID %>" class="btn btn-primary">수정</a>
 				<a onclick="return confirm('삭제하시겠습니까?')" href="issueDeleteAction.jsp?issueID=<%= issueID %>" class="btn btn-primary">삭제</a>
@@ -157,6 +155,8 @@
 			
 			
 	</div>
+	</div>
+	</section>
 	<script type="text/javascript">
 	function nwindow(issueID,commentID){
 		window.name = "commentParant";
@@ -173,9 +173,8 @@
 
 
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Yearning</p></div>
-        </footer>
+       <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; bona
+      </div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

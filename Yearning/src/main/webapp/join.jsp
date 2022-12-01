@@ -100,17 +100,17 @@ function checkjoin()
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+                        
                     </ul>
                 </div>
             </div>
         </nav>
    <main class="text-center">
-   <header class="bg-dark py-5">
+   <header class="bg-dark py-5" style="background-image: url('https://ifh.cc/g/jSyw4S.jpg')">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h2 class="display-4 fw-bolder">Welcom to Yearning</h1>
@@ -154,7 +154,7 @@ function checkjoin()
          </div>
          <div><p> </div>
          <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="checkjoin()">회원가입</button>
-         <p class="mt-5 mb-3 text-muted">&copy; Yearning</p>
+         <p class="mt-5 mb-3 text-muted">&copy; bona</p>
       </form>
    </section>
    </main>

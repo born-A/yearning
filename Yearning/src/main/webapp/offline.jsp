@@ -33,7 +33,7 @@
          <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Yearning</a>
+                <a class="navbar-brand" href="home.jsp">Yearning</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -54,7 +54,7 @@
         %>
         	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Yearning</a>
+                <a class="navbar-brand" href="home.jsp">Yearning</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -77,20 +77,22 @@
         <fmt:bundle basename="bundle.message">
         
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="masthead" style="background-image: url('https://ifh.cc/g/jYDC1Z.jpg')">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder"><fmt:message key="title"/></h1>
-                    <p class="lead fw-normal text-white-50 mb-0"><fmt:message key="subtitle"/></p>
+                <div style="color:#27201d; "class="text-center">
+                   <p style="font-weight: 5000;  font-size:80px; font-family:Lora;" class="lead fw-normal"><strong><fmt:message key="title"/></strong></p>
+                    <p style="font-size:20px;"class="lead fw-normal"><fmt:message key="subtitle"/></p>
                 </div>
             </div>
         </header>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
+            
             <div class="text-right">
-            	<a href="?language=ko">Korean</a>|<a href="?language=en">English</a>
+            	<a href="?language=ko">Korean</a>  |  <a href="?language=en">English</a>
             </div>
+            <div><p></div>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">
                         <div class="card h-100">
@@ -180,7 +182,7 @@
          </fmt:bundle>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; bona 2022</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; bona </p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

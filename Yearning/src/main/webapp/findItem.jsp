@@ -4,6 +4,17 @@
     <%@ page import="post.PostDAO" %>
     <%@ page import="post.Post" %>
     <%@ page import="java.util.ArrayList" %>
+    <%@ page import="offline.OffpostDAO" %>
+    <%@ page import="offline.Offpost" %>
+    <%@ page import="comment.Comment" %>
+<%@ page import="comment.CommentDAO" %>
+    <%@ page import="java.io.File" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page import="post.JjimDAO" %>
+<%@ page import="post.Jjim" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,6 +43,10 @@
     		if(session.getAttribute("userID") != null){
     			userID = (String) session.getAttribute("userID");
     		}
+    		int postID = 0;
+    		if(request.getParameter("postID") != null){
+    			postID = Integer.parseInt(request.getParameter("postID"));
+    		}
     		int pageNumber = 1;
     		if(request.getParameter("pageNumber") != null){
     			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -40,6 +55,7 @@
 			if (request.getParameter("boardID") != null){
 				boardID = Integer.parseInt(request.getParameter("boardID"));
 			}
+		Post post = new PostDAO().getPost(postID);
     	%>
     	<%
         	if(userID == null){
@@ -89,11 +105,10 @@
         <% 
         	}
         %>
-       
-        
+
         
          <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="bg-dark py-5" style="background-image: url('https://ifh.cc/g/mGn8Sk.jpg')">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">아이템 찾기</h1>
@@ -114,7 +129,8 @@
             </div>
             <!-- Call to Action-->
              <div class="card text-white bg-secondary my-5 py-4 text-center">
-              
+            <p>다른 유저들도 같은 아이템을 찾고 있을 수도 있어요 !
+            
             <div class="card mb-4">
                        
                         <div class="card-body">
@@ -130,6 +146,10 @@
             </div>
             <!-- Content Row-->
             <div class="row gx-4 gx-lg-5">
+             <% 	
+					String real = "/Users/bona/git/repository/Yearning/src/main/webapp/postUpload";
+					File viewFile = new File(real+"/"+postID+".jpg");
+					%>
             <%
             	PostDAO postDAO = new PostDAO();
                 ArrayList<Post> list = postDAO.getList(pageNumber);
@@ -138,15 +158,14 @@
              <div class="col-md-4 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
-                         <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <h2 class="card-title"><a href="view.jsp?postID=<%=list.get(i).getPostID()%>"><%= list.get(i).getPostTitle()%></a></h2> 
+                         <img class="card-img-top" src="postUpload/<%=list.get(i).getPostID() %>.jpg" alt="..." />
+                            <h2 class="card-title"><%= list.get(i).getPostTitle()%></a></h2> 
                            <%--  <h2 class="card-title"><a href="uploadex.jsp?postID=<%=list.get(i).getPostID()%>"><%= list.get(i).getPostTitle()%></a></h2> --%>
-                            <p class="card-text"><%= list.get(i).getUserID()%></p>
-                            <p class="card-text"><%= list.get(i).getUserID()%></p>
+                            <p class="card-text">작성자 : <%= list.get(i).getUserID()%></p>
                             <p class="card-text"><%= list.get(i).getPostDate().substring(0,11) + list.get(i).getPostDate().substring(11,13)+"시"+list.get(i).getPostDate().substring(14,16)+"분"%></p>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                           
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="view.jsp?postID=<%=list.get(i).getPostID()%>">상세보기</a></div>
                     </div>
                 </div>
              	<%
@@ -163,54 +182,12 @@
                             <li class="page-item"><a class="page-link" href="#!">2</a></li>
                             <li class="page-item"><a class="page-link" href="#!">3</a></li>
                             <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">5</a></li>
                             <li class="page-item"><a class="page-link" href="#!">Older</a></li>
                         </ul>
                     </nav>
             </div>
             
-                    <!-- Side widgets-->
-                <div class="col-lg-4">
-                    <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Search</div>
-                        <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Categories</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Side widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Side Widget</div>
-                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                    </div>
-                </div>
-                
-               
         </div>
 
 		<%
@@ -234,7 +211,7 @@
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; bona</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

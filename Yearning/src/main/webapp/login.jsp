@@ -66,17 +66,17 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline.jsp">쇼핑몰 탐방</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offline.jsp">오프라인 탐방</a></li>
                         <li class="nav-item"><a class="nav-link" href="findItem.jsp">아이템 찾기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">트렌드</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="issue.jsp ">트렌드</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jjimPost.jsp">스크랩</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
    <main class="text-center">
-   <header class="bg-dark py-5">
+   <header class="bg-dark py-5" style="background-image: url('https://ifh.cc/g/jSyw4S.jpg')">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h2 class="display-4 fw-bolder">Welcom to Yearning</h1>
@@ -103,14 +103,24 @@
          <div><p> </div>
          <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
          <br>
+         <br>
          아직 Yearning 회원이 아니신가요?
          <br>
+         <br>
          <a href="join.jsp">회원가입 하러가기</a>
-     
-         <p class="mt-5 mb-3 text-muted">&copy; Yearning</p>
+     <div><p></div>
+        
       </form>
    </section>
    </main>
+    <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; bona</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="./resources/js/scripts.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="./resources/js/scripts.js"></script>
